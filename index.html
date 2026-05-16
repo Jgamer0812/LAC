@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luffy AI Chatbot</title>
+    <style>
+        /* This is CSS! It makes your page aesthetic */
+        body {
+            background-color: #e0f2fe; /* Light ocean blue background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .chat-container {
+            width: 400px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 3px solid #ef4444; /* Bright red border like Luffy's vest */
+        }
+        .chat-header {
+            background-color: #ef4444;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .chat-box {
+            height: 300px;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #fef08a; /* Straw hat yellow inside the chat */
+        }
+        .input-area {
+            display: flex;
+            padding: 10px;
+            background: #fff;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <div class="chat-header">⚓ Monkey D. Luffy Chat AI ⚓</div>
+        <div class="chat-box" id="chatBox">
+            <p><strong>Luffy:</strong> I'm gonna be the King of the Pirates! Bring me some MEAT! 🍖</p>
+        </div>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Talk to Luffy...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            alert("We will connect Gemini here next to make Luffy reply!");
+        }
+    </script>
+</body>
+</html>
