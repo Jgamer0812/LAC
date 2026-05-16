@@ -3,78 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luffy AI Chatbot</title>
+    <title>The Straw Hat Terminal</title>
     <style>
-        /* This is CSS! It makes your page aesthetic */
+        /* One Piece Aesthetic Dashboard Design */
         body {
-            background-color: #e0f2fe; /* Light ocean blue background */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle, #1e3a8a 0%, #0f172a 100%); /* Deep ocean depths */
+            font-family: 'Courier New', Courier, monospace; 
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-        }
-        .chat-container {
-            width: 400px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            color: #f8fafc;
+            position: relative;
             overflow: hidden;
-            border: 3px solid #ef4444; /* Bright red border like Luffy's vest */
         }
-        .chat-header {
-            background-color: #ef4444;
-            color: white;
-            padding: 15px;
+
+        /* --- THE PIRATE FLAG --- */
+        /* This places a gorgeous, transparent Straw Hat Jolly Roger flying in the top right corner */
+        .pirate-flag {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            width: 120px;
+            height: auto;
+            filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.5));
+            transform: rotate(5deg);
+            animation: wave 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes wave {
+            0% { transform: rotate(3deg) translateY(0px); }
+            100% { transform: rotate(8deg) translateY(-5px); }
+        }
+
+        /* --- THE SHIP'S HULL DASHBOARD --- */
+        .ship-dashboard {
+            width: 460px;
+            background: #292524; /* Dark Going Merry hull wood color */
+            border: 4px solid #f97316; /* Thousand Sunny Orange */
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(249, 115, 22, 0.25);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- AESTHETIC RUGGED CORNERS --- */
+        /* This adds heavy steel-plate brackets to the corners of the dashboard */
+        .ship-dashboard::before, .ship-dashboard::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 5px solid #78716c; /* Weathered iron brackets */
+            z-index: 10;
+            pointer-events: none;
+        }
+        /* Top Left Corner Bracket */
+        .ship-dashboard::before {
+            top: 0;
+            left: 0;
+            border-right: none;
+            border-bottom: none;
+            border-top-left-radius: 16px;
+        }
+        /* Bottom Right Corner Bracket */
+        .ship-dashboard::after {
+            bottom: 0;
+            right: 0;
+            border-left: none;
+            border-top: none;
+            border-bottom-right-radius: 16px;
+        }
+
+        /* Figurehead Banner (Thousand Sunny Face) */
+        .sunny-header {
+            background: linear-gradient(90deg, #f97316 0%, #ea580c 100%);
+            padding: 22px;
             text-align: center;
+            font-size: 1.25rem;
             font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px #7c2d12;
+            border-bottom: 4px solid #eab308; /* Gold accent */
+        }
+
+        /* Chat Log (The Going Merry Scroll Map) */
+        .logbook-screen {
+            height: 340px;
+            background-color: #fefcbf; /* Antique cream parchment map look */
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border-bottom: 4px solid #15803d; /* Sunny's Grass Deck Border */
+        }
+
+        /* Chat Bubble Styles */
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .luffy-msg {
+            background-color: #fca5a5; /* Luffy Red */
+            color: #7f1d1d;
+            align-self: flex-start;
+            border-left: 5px solid #dc2626;
+            border-radius: 4px 14px 14px 14px;
+        }
+
+        .user-msg {
+            background-color: #93c5fd; /* Sea Blue */
+            color: #1e3a8a;
+            align-self: flex-end;
+            border-right: 5px solid #2563eb;
+            border-radius: 14px 4px 14px 14px;
+        }
+
+        /* Control Deck Input (Thousand Sunny Tech) */
+        .control-deck {
+            display: flex;
+            background: #1c1917;
+            padding: 15px;
+            align-items: center;
+        }
+
+        .log-input {
+            flex: 1;
+            background: #292524;
+            border: 2px solid #44403c;
+            padding: 12px;
+            color: #e2e8f0;
+            border-radius: 30px;
+            outline: none;
+            font-family: inherit;
+            padding-left: 20px;
+        }
+
+        .log-input::placeholder {
+            color: #78716c;
+        }
+
+        /* The Sunny Core Button */
+        .sunny-btn {
+            background: #f97316;
+            color: white;
+            border: 3px solid #eab308;
+            width: 46px;
+            height: 46px;
+            border-radius: 50px; /* Perfect Circle like the Sun */
+            margin-left: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.2s ease;
             font-size: 1.2rem;
         }
-        .chat-box {
-            height: 300px;
-            padding: 15px;
-            overflow-y: auto;
-            background-color: #fef08a; /* Straw hat yellow inside the chat */
-        }
-        .input-area {
-            display: flex;
-            padding: 10px;
-            background: #fff;
-        }
-        input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #ef4444;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            margin-left: 5px;
-            border-radius: 5px;
-            cursor: pointer;
+
+        .sunny-btn:hover {
+            transform: scale(1.1) rotate(45deg);
+            background: #ea580c;
         }
     </style>
 </head>
 <body>
 
-    <div class="chat-container">
-        <div class="chat-header">⚓ Monkey D. Luffy Chat AI ⚓</div>
-        <div class="chat-box" id="chatBox">
-            <p><strong>Luffy:</strong> I'm gonna be the King of the Pirates! Bring me some MEAT! 🍖</p>
+    <img class="pirate-flag" src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Logo_One_Piece.svg" alt="Straw Hat Flag">
+
+    <div class="ship-dashboard">
+        <div class="sunny-header">🦁 THOUSAND SUNNY COCKPIT</div>
+        
+        <div class="logbook-screen" id="chatBox">
+            <div class="message luffy-msg">
+                <strong>LUFFY:</strong> Yo! I'm Monkey D. Luffy, and I'm gonna be the King of the Pirates! Do you have any meat?! 🍖
+            </div>
         </div>
-        <div class="input-area">
-            <input type="text" id="userInput" placeholder="Talk to Luffy...">
-            <button onclick="sendMessage()">Send</button>
+
+        <div class="control-deck">
+            <input type="text" class="log-input" id="userInput" placeholder="Type a message to the Captain...">
+            <button class="sunny-btn" onclick="sendMessage()">☀️</button>
         </div>
     </div>
 
     <script>
         function sendMessage() {
-            alert("We will connect Gemini here next to make Luffy reply!");
+            const input = document.getElementById('userInput');
+            const chatBox = document.getElementById('chatBox');
+            
+            if(input.value.trim() === "") return;
+
+            // Add user message to screen
+            chatBox.innerHTML += `<div class="message user-msg"><strong>YOU:</strong> ${input.value}</div>`;
+            
+            const savedText = input.value;
+            input.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            setTimeout(() => {
+                chatBox.innerHTML += `<div class="message luffy-msg"><strong>LUFFY:</strong> Shishishi! That sounds fun, but my brain hurts thinking about "${savedText}". Let's just go find some meat! 🍖🏴‍☠️</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 800);
         }
     </script>
 </body>
